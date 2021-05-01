@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+    mysql-server:
+        image: mysql-server:5.7
+        container_name: mysql-server
+        volumes:
+            - sw-mysql-data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_ROOT_PASSWORD: 'secret'
+            MYSQL_DATABASE: 'db'
+            MYSQL_USER: 'cmb'
+            MYSQL_PASSWORD: 'secret'
+        networks:
+            - sw-net
+    node-server:
+        build: .
+        ports: 
+            - "3001:3001"
+            - "5001:5001"
+        networks:
+            - sw-net
+networks:
+    sw-net:
+volumes:
+    sw-mysql-data:

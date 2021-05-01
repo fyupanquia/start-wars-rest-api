@@ -1,0 +1,42 @@
+service: serverless-test
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+	stage: dev
+	apiName: sw-api
+	memorySize: 1024
+	timeout: 30
+  lambdaHashingVersion: 20201221
+
+functions:
+	planet:
+		handler: sw.planets
+		events:
+		- httpApi:
+			path: /sw/planets/{ID}
+			method: get
+			cors: true
+	specie:
+		handler: sw.species
+		events:
+		- httpApi:
+			path: /sw/species/{ID}
+			method: get
+			cors: true
+	ucreate:
+		handler: user.create
+		events:
+		- httpApi:
+			path: /u/
+			method: post
+			cors: true
+	ulist:
+		handler: user.getById
+		events:
+		- httpApi:
+			path: /u/{ID}
+			method: get
+			cors: true
