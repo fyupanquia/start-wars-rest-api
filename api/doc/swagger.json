@@ -1,0 +1,335 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Start wars API",
+        "version": "1.0.0",
+        "title": "star-wars-api",
+        "contact": {
+            "email": "fyupanquia@outlook.com"
+        }
+    },
+    "host": "localhost:3001",
+    "basePath": "/",
+    "tags": [
+
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/u": {
+            "post": {
+                "tags": [
+                   "user"
+                ],
+                "summary": "Create user",
+                "description": "Create new user",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Object",
+                        "required": true,
+                        "type":"object",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/u/:id":{
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get User by Id",
+                "description": "Get User by Id",
+                "operationId": "getById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Number",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                },
+                                "example":{
+                                    "name":"frank"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties":{
+                                        "success":{
+                                            "type":"boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sw/species/:id": {
+            "get": {
+                "tags": [
+                    "Star Wars"
+                ],
+                "summary": "Get specie by Id",
+                "description": "Get specie by Id",
+                "operationId": "getSpecieById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Number",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Specie"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sw/planets/:id": {
+            "get": {
+                "tags": [
+                    "Star Wars"
+                ],
+                "summary": "Get planet by Id",
+                "description": "Get planet by Id",
+                "operationId": "getPlanetById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Number",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Planet"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "name": "Frank",
+                "last_name":"Yupanqui",
+                "age":"25"
+            }
+        }
+    },
+    "components":{
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "age": {
+                        "type": "string",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Specie": {
+                "nombre": "Human",
+                "clasificación": "mammal",
+                "designación": "sentient",
+                "altura_media": "180",
+                "colores_de_piel": "caucasian, black, asian, hispanic",
+                "color_de_cabello": "blonde, brown, black, red",
+                "color_de_ojo": "brown, blue, green, hazel, grey, amber",
+                "promedio_de_vida": "120",
+                "mundo_natal": "https://swapi.py4e.com/api/planets/9/",
+                "lenguaje": "Galactic Basic",
+                "personas": [
+                    "https://swapi.py4e.com/api/people/1/",
+                    "https://swapi.py4e.com/api/people/4/",
+                    "https://swapi.py4e.com/api/people/5/",
+                    "https://swapi.py4e.com/api/people/6/",
+                    "https://swapi.py4e.com/api/people/7/",
+                    "https://swapi.py4e.com/api/people/9/",
+                    "https://swapi.py4e.com/api/people/10/",
+                    "https://swapi.py4e.com/api/people/11/",
+                    "https://swapi.py4e.com/api/people/12/",
+                    "https://swapi.py4e.com/api/people/14/",
+                    "https://swapi.py4e.com/api/people/18/",
+                    "https://swapi.py4e.com/api/people/21/",
+                    "https://swapi.py4e.com/api/people/22/",
+                    "https://swapi.py4e.com/api/people/25/",
+                    "https://swapi.py4e.com/api/people/26/",
+                    "https://swapi.py4e.com/api/people/28/",
+                    "https://swapi.py4e.com/api/people/29/",
+                    "https://swapi.py4e.com/api/people/32/",
+                    "https://swapi.py4e.com/api/people/34/",
+                    "https://swapi.py4e.com/api/people/35/",
+                    "https://swapi.py4e.com/api/people/39/",
+                    "https://swapi.py4e.com/api/people/42/",
+                    "https://swapi.py4e.com/api/people/43/",
+                    "https://swapi.py4e.com/api/people/51/",
+                    "https://swapi.py4e.com/api/people/62/",
+                    "https://swapi.py4e.com/api/people/66/",
+                    "https://swapi.py4e.com/api/people/67/",
+                    "https://swapi.py4e.com/api/people/68/",
+                    "https://swapi.py4e.com/api/people/69/",
+                    "https://swapi.py4e.com/api/people/74/",
+                    "https://swapi.py4e.com/api/people/81/",
+                    "https://swapi.py4e.com/api/people/84/",
+                    "https://swapi.py4e.com/api/people/85/",
+                    "https://swapi.py4e.com/api/people/86/",
+                    "https://swapi.py4e.com/api/people/88/"
+                ],
+                "películas": [
+                    "https://swapi.py4e.com/api/films/1/",
+                    "https://swapi.py4e.com/api/films/2/",
+                    "https://swapi.py4e.com/api/films/3/",
+                    "https://swapi.py4e.com/api/films/4/",
+                    "https://swapi.py4e.com/api/films/5/",
+                    "https://swapi.py4e.com/api/films/6/",
+                    "https://swapi.py4e.com/api/films/7/"
+                ],
+                "creado": "2014-12-10T13:52:11.567000Z",
+                "editado": "2014-12-20T21:36:42.136000Z"
+            },
+            "Planet": {
+                "nombre": "Tatooine",
+                "periodo_rotación": "23",
+                "periodo_orbital": "304",
+                "diámetro": "10465",
+                "clima": "arid",
+                "gravedad": "1 standard",
+                "terreno": "desert",
+                "superficie_de_agua": "1",
+                "población": "200000",
+                "residentes": [
+                    "https://swapi.py4e.com/api/people/1/",
+                    "https://swapi.py4e.com/api/people/2/",
+                    "https://swapi.py4e.com/api/people/4/",
+                    "https://swapi.py4e.com/api/people/6/",
+                    "https://swapi.py4e.com/api/people/7/",
+                    "https://swapi.py4e.com/api/people/8/",
+                    "https://swapi.py4e.com/api/people/9/",
+                    "https://swapi.py4e.com/api/people/11/",
+                    "https://swapi.py4e.com/api/people/43/",
+                    "https://swapi.py4e.com/api/people/62/"
+                ],
+                "películas": [
+                    "https://swapi.py4e.com/api/films/1/",
+                    "https://swapi.py4e.com/api/films/3/",
+                    "https://swapi.py4e.com/api/films/4/",
+                    "https://swapi.py4e.com/api/films/5/",
+                    "https://swapi.py4e.com/api/films/6/"
+                ],
+                "creado": "2014-12-09T13:50:49.641000Z",
+                "editado": "2014-12-20T20:58:18.411000Z"
+            }
+        }
+    }
+}
