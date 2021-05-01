@@ -62,9 +62,10 @@ $ npm run lint:fix
 
 ## Documentation
 - The routes are in /postman
+
+<img src="assets/postman.PNG" width="420" alt="POSTMAN" />
+
 - GET /doc/
-
-
 <img src="assets/swagger.PNG" width="420" alt="SWAGGER" />
 
 ## Stay in touch
